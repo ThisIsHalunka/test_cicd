@@ -10,24 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Copy files to server
-        uses: appleboy/scp-action@v0.1.6
-        with:
-          host: 159.223.16.58
-          username: bohdan_halunka
-          key: ${{ secrets.DEPLOY_KEY }}
-          source: "."
-          target: "/home/bohdan_halunka/test_halunka"  # замініть на потрібний каталог
-
-      - name: Run deploy commands on server
+      - name: Deploy repository to test_halunka folder
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: 159.223.16.58
-          username: bohdan_halunka
+          username: bohdan_halunka  # Замініть, якщо потрібно інше ім'я користувача
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            cd /home/bohdan_halunka/test_halunka   # переходимо до потрібного каталогу
-            git pull origin main         # оновлюємо репозиторій
+            # Видаляємо каталог test_halunka (якщо існує) і клонюємо репозиторій у нього
+            rm -rf /home/bohdan_halunka/test_halunka
+            git clone https://github.com/ThisIsHalunka/test_cicd.git /home/bohdan_halunka/test_halunka
