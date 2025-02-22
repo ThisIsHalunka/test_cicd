@@ -19,4 +19,4 @@ jobs:
           script: |
             # Видаляємо каталог test_halunka (якщо існує) і клонюємо репозиторій у нього
             rm -rf /home/bohdan_halunka/test_halunka
-            git clone https://github.com/your_username/your_repository.git /home/bohdan_halunka/test_halunka
+            git clone https://github.com/ThisIsHalunka/test_cicd.git /home/bohdan_halunka/test_halunka
