@@ -13,10 +13,9 @@ jobs:
       - name: Deploy repository to test_halunka folder
         uses: appleboy/ssh-action@v0.1.6
         with:
-          host: 159.223.16.58
-          username: bohdan_halunka  # Замініть, якщо потрібно інше ім'я користувача
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }} 
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            # Видаляємо каталог test_halunka (якщо існує) і клонюємо репозиторій у нього
             rm -rf /home/bohdan_halunka/test_halunka
             git clone https://github.com/ThisIsHalunka/test_cicd.git /home/bohdan_halunka/test_halunka
